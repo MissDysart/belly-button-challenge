@@ -1,14 +1,40 @@
 // Get data from URL
 const url = "https://static.bc-edx.com/data/dl-1-2/m14/lms/starter/samples.json";
 
-// // Promise Pending
-// const dataPromise = d3.json(url);
-// console.log("Data Promise: ", dataPromise);
-
-// Fetch the JSON data and console log it
+// Fetch the JSON data
 d3.json(url).then(function(data) {
-  console.log(data);
+  let names = data.names;
+  let meta_data = data.metadata;
+  let samples = data.samples;
+//   for (let i = 0; i < length.data; i++) {
+//     console.log(samples[i]);
+//   }
+    // let otuID = samples.id.map(index => index);
+    // console.log(otuID);
+
+  // Use D3 to select the dropdown menu
+  let dropdownMenu = d3.select("#selDataset");
+  // Bind 'names' to dropdown menu and create option elements in index.html
+  let options = dropdownMenu.selectAll("option")
+    .data(names)
+    .enter()
+    .append("option");
+  options.text(n => n).attr("value", n=>n);
+
+// Initialize visualizations
+
+    // function init() {
+    //     dataPlot = [{
+    //         x: ,
+    //         y: [1, 2, 4, 8, 16],
+    //         type: 'bar',
+    //         orientation: 'h' }];
+  
+    //     Plotly.newPlot("bar", data);
+    // }
+    // init();
 });
+
 
 // Slice the top 10 OTU in 'sample_values' (already in descending order)
 // Slice the first 10 objects for plotting
@@ -17,14 +43,10 @@ d3.json(url).then(function(data) {
 //let topOTUs = OTUid.slice(0, 10);
 
 
-// Initialize visualizations
-// Default Bar Chart
-// function init() {
-//     data = [{
-//       x: [1, 2, 3, 4, 5],
-//       y: [1, 2, 4, 8, 16],
-//       type: 'bar',
-//       orientation: 'h' }];
-  
-//     Plotly.newPlot("bar", data);
-//   }
+
+
+
+// function optionChanged(passedvalue){
+//     chart_values(passedvalue);
+//     meta_data(passedvalue);
+// };
