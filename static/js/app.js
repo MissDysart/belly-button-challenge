@@ -52,32 +52,25 @@ init();
 
   // Use D3 to select the dropdown menu
   let dropdownMenu = d3.select("#selDataset");
+  
   // Bind 'names' to dropdown menu and create option elements in index.html (from Xpert Learning Assistant)
   let options = dropdownMenu.selectAll("option")
     .data(names)
     .enter()
     .append("option");
-  options.text(n => n).attr("value", n=>n);
+  options.text(m => m).attr("value", m=>m);
 
   // Add an onchange event listener to the dropdown menu (from Xpert Learning Assistant)
   dropdownMenu.on("change", function() {
     let selectedValue = d3.select(this).property("value");
-    optionChanged(selectedValue);
-    console.log(selectedValue.text());
+    console.log(selectedValue);
+    // optionChanged(selectedValue);
+    // console.log(selectedValue.text());
   });
 
 
 
 });
-
-
-// Slice the top 10 OTU in 'sample_values' (already in descending order)
-// Slice the first 10 objects for plotting
-// let samples = data.samples
-// console.log(samples)
-//let topOTUs = OTUid.slice(0, 10);
-
-
 
 
 
